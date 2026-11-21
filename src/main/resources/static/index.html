@@ -56,10 +56,8 @@
             container.appendChild(newItem);
         });
 
-        // Interceptar el envío para formatear la wishlist y enviar mediante fetch con redirección
+        // Interceptar el envío SOLO para formatear la wishlist, y dejar que el navegador haga el POST nativo
         document.getElementById('registroForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
             const inputs = document.querySelectorAll('.wishlist-input');
             let wishlistTexto = "";
             
@@ -71,23 +69,6 @@
             
             // Asignar el texto formateado al input hidden que leerá el backend
             document.getElementById('wishlist-final').value = wishlistTexto;
-
-            const formData = new FormData(this);
-            fetch(this.action, {
-                method: 'POST',
-                body: new URLSearchParams(formData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = "/gracias.html";
-                } else {
-                    alert("Hubo un problema al registrar la participación. Inténtalo de nuevo.");
-                }
-            })
-            .catch(error => {
-                console.error("Error al enviar el formulario:", error);
-                alert("Error de conexión al enviar el formulario.");
-            });
         });
     </script>
 </body>
