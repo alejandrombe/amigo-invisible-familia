@@ -57,7 +57,7 @@
         });
 
         // Interceptar el envío para formatear la wishlist y enviar mediante fetch con redirección
-        document.getElementById('registroForm').addEventListener('submit', async function(e) {
+        document.getElementById('registroForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
             const inputs = document.querySelectorAll('.wishlist-input');
@@ -72,22 +72,22 @@
             // Asignar el texto formateado al input hidden que leerá el backend
             document.getElementById('wishlist-final').value = wishlistTexto;
 
-            try {
-                const formData = new FormData(this);
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: new URLSearchParams(formData)
-                });
-                
-                if (response.ok || response.redirected) {
+            const formData = new FormData(this);
+            fetch(this.action, {
+                method: 'POST',
+                body: new URLSearchParams(formData)
+            })
+            .then(response => {
+                if (response.ok) {
                     window.location.href = "/gracias.html";
                 } else {
                     alert("Hubo un problema al registrar la participación. Inténtalo de nuevo.");
                 }
-            } catch (error) {
+            })
+            .catch(error => {
                 console.error("Error al enviar el formulario:", error);
                 alert("Error de conexión al enviar el formulario.");
-            }
+            });
         });
     </script>
 </body>
