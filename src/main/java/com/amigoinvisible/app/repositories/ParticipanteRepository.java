@@ -1,4 +1,4 @@
-package com.amigoinvisible.app.repositories; // Ajusta el paquete
+package com.amigoinvisible.app.repositories;
 
 import com.amigoinvisible.app.models.Participante;
 import org.springframework.data.jpa.repository.JpaRepository;

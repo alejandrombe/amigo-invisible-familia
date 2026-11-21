@@ -1,4 +1,4 @@
-package com.amigoinvisible.app.models; // Ajusta el paquete según tu proyecto
+package com.amigoinvisible.app.models;
 
 import jakarta.persistence.*;
 

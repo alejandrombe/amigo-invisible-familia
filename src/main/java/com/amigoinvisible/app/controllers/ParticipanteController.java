@@ -16,10 +16,8 @@ public class ParticipanteController {
 
     @PostMapping
     public String registrarParticipante(Participante participante) {
-        // Spring Boot automáticamente mapea los campos del formulario (name="nombre", etc.) al objeto Participante
         repository.save(participante);
-        
-        // Redirigimos a la raíz (luego podemos crear una página de "gracias.html")
-        return "redirect:/?success=true"; 
+        // IMPORTANTE: Redirigimos a la página física que acabamos de crear
+        return "redirect:/gracias.html"; 
     }
 }
