@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigo Invisible - Martos Bellido & Díaz Bellido</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="header-navideno">
+            <h1>🎄 Sorteo Amigo Invisible 🎅</h1>
+            <div class="welcome-text">
+                <p>¡Bienvenido a esta página web!</p>
+                <p>Se acerca la Navidad, y como todos los años, las familias Martos Bellido y Díaz Bellido (además de sus maravillosos allegados) se juntan para disfrutar de las festividades y, entre actividades de múltiple índole y gastronomía de primera calidad, celebrar el amigo invisible, como es costumbre.</p>
+                <p>En esta página podrás rellenar un pequeño perfil con tu nombre, tu correo, y una pequeña lista de deseo/whislist, con la que podrás "echarle un cable" a tu amigo invisible para que dé en el clavo.</p>
+                <p>Una vez hayas rellenado todos tus datos, pulsa el botón de "Confirmar Participación", lo que permitirá realizar el sorteo y distribución.</p>
+            </div>
+        </header>
+        
+        <form id="registroForm" action="/api/participantes" method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ej. Alejandro Martos">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required placeholder="tu@correo.com">
+            </div>
+            
+            <div class="form-group" id="wishlist-container">
+                <label>Lista de deseos (Añade tantas opciones como quieras, incluso enlaces apáginas como Amazon, Primor, Mediamarkt, entre otras)</label>
+                <div class="wishlist-item">
+                    <input type="text" class="wishlist-input" placeholder="Ej. Un libro, un link a Amazon..." required>
+                </div>
+            </div>
+            
+            <!-- Botón para añadir más inputs dinámicamente -->
+            <button type="button" id="add-item-btn" class="btn-secondary">+ Añadir otra opción</button>
+            
+            <!-- Campo oculto que agrupará la lista para mandarla a Spring Boot -->
+            <input type="hidden" id="wishlist-final" name="wishlist">
+            
+            <button type="submit" class="btn-submit">🎁 Confirmar Participación</button>
+        </form>
+    </main>
+
+    <script>
+        // Añadir nuevos campos de lista de deseos
+        document.getElementById('add-item-btn').addEventListener('click', function() {
+            const container = document.getElementById('wishlist-container');
+            const newItem = document.createElement('div');
+            newItem.className = 'wishlist-item';
+            newItem.innerHTML = '<input type="text" class="wishlist-input" placeholder="Otra idea o link..." required>';
+            container.appendChild(newItem);
+        });
+
+        // Interceptar el envío para formatear la wishlist en un solo String de texto
+        document.getElementById('registroForm').addEventListener('submit', function(e) {
+            const inputs = document.querySelectorAll('.wishlist-input');
+            let wishlistTexto = "";
+            
+            inputs.forEach(input => {
+                if(input.value.trim() !== "") {
+                    wishlistTexto += "- " + input.value.trim() + "\n";
+                }
+            });
+            
+            // Asignar el texto formateado al input hidden que leerá el backend
+            document.getElementById('wishlist-final').value = wishlistTexto;
+        });
+    </script>
+</body>
+</html>

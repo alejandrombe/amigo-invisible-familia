@@ -1,0 +1,124 @@
+:root {
+    --navidad-rojo: #c0392b;
+    --navidad-rojo-oscuro: #96281b;
+    --navidad-verde: #27ae60;
+    --navidad-verde-oscuro: #1e8449;
+    --fondo-nieve: #fdfbf7;
+    --texto-oscuro: #2c3e50;
+    --border-radius: 0.5rem;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--fondo-nieve);
+    /* Patrón sutil de puntos para fondo nevado */
+    background-image: radial-gradient(#e5e7e9 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--texto-oscuro);
+    margin: 0;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 16px rgba(192, 57, 43, 0.08);
+    border-top: 6px solid var(--navidad-rojo);
+    width: 100%;
+    max-width: 42rem;
+}
+
+.header-navideno {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: var(--navidad-verde-oscuro);
+    font-size: 2.2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.welcome-text p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: left;
+    font-size: 1.05rem;
+    color: #4a5568;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--navidad-verde-oscuro);
+}
+
+input[type="text"], input[type="email"] {
+    padding: 0.85rem;
+    font-size: 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+.wishlist-item {
+    margin-bottom: 0.75rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--navidad-rojo);
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--navidad-verde);
+    border: 2px dashed var(--navidad-verde);
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 2rem;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--navidad-verde);
+    color: white;
+}
+
+.btn-submit {
+    background-color: var(--navidad-rojo);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-submit:hover {
+    background-color: var(--navidad-rojo-oscuro);
+    box-shadow: 0 4px 12px rgba(192, 57, 43, 0.2);
+}
